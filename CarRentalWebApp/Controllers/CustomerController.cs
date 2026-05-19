@@ -38,7 +38,7 @@ namespace CarRentalWebApp.Controllers
             return View(customer);
         }
 
-        public async Task<IActionResult> Edit(int Id)
+        public async Task<IActionResult> Edit(int? Id)
         {
             if (Id == null)
             {
@@ -70,7 +70,7 @@ namespace CarRentalWebApp.Controllers
             return View(customer);
         }
 
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> Delete(int? Id)
         {
             if (Id == null)
             {

@@ -78,7 +78,7 @@ namespace CarRentalWebApp.Controllers
 
         //Silme işlemi tarafı.
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
