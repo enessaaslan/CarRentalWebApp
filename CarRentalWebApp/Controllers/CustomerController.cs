@@ -56,7 +56,7 @@ namespace CarRentalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int Id, Customer customer)
         {
-            if (customer != customer.Id)
+            if (Id != customer.Id)
             {
                 return NotFound();
             }
