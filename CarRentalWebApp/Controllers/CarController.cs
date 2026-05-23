@@ -10,10 +10,9 @@ namespace CarRentalWebApp.Controllers
         private readonly CarRentalDbContext _context;
         private readonly ILogger<CarController> _logger;
 
-        public CarController(CarRentalDbContext context, ILogger<CarController> logger)
+        public CarController(CarRentalDbContext context)
         {
             _context = context;
-            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -63,7 +62,7 @@ namespace CarRentalWebApp.Controllers
         {
             if (id != car.Id)
             {
-
+                return NotFound();
             }
 
             if (ModelState.IsValid)
