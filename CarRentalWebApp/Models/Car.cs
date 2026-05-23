@@ -13,7 +13,7 @@ namespace CarRentalWebApp.Models
         public string Model { get; set; }
         [Required(ErrorMessage = "Yıl boş bırakılamaz.")]
         public int Year { get; set; }
-        [Required(ErrorMessage ="Plaka zorunludur.")]
+        [Required(ErrorMessage = "Plaka zorunludur.")]
         [StringLength(10, ErrorMessage = "Plaka en fazla 10 karakter olabilir.")]
         public string PlateNumber { get; set; }
         [Required(ErrorMessage = "Günlük fiyat boş bırakılamaz.")]

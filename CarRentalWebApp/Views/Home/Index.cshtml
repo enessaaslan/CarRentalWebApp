@@ -1,8 +1,50 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@model IEnumerable<CarRentalWebApp.Models.Car>
+
+@{
+    ViewData["Title"] = "Müsait Araçlar";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mb-5">
+    <h1 class="display-4">Araç Kiralama Sistemine Hoşgeldiniz</h1>
+    <p class="lead">Sizin için en uygun aracı seçin ve hemen kiralayın.</p>
 </div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h2 class="mb-4">Müsait Araçlarımız</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        Şu anda kiralanabilir araç bulunmamaktadır. Lütfen daha sonra tekrar kontrol ediniz.
+    </div>
+}
+else
+{
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title text-primary">@item.Brand @item.Model</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@item.Year</h6>
+                        <p class="card-text">
+                            <strong>Plaka:</strong> @item.PlateNumber<br />
+                            <strong>Günlük Fiyat:</strong> <span class="text-success fs-5">@item.DailyPrice.ToString("C")</span>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent border-top-0 pb-3">
+                        <a asp-action="RentalRequest" asp-route-carId="@item.Id" class="btn btn-primary w-100">Kirala</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

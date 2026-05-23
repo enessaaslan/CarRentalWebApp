@@ -20,6 +20,6 @@ namespace CarRentalWebApp.Models
         public DateTime RegistrationDate { get; set; }
 
         // Navigation prop.
-        public ICollection<Rental> Rentals { get; set; }
+        public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
     }
 }

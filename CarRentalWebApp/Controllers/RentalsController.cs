@@ -1,4 +1,4 @@
-﻿using CarRentalWebApp.Data;
+using CarRentalWebApp.Data;
 using CarRentalWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalWebApp.Controllers
 {
-    public class RentalController : Controller
+    public class RentalsController : Controller
     {
         private readonly CarRentalDbContext _context;
 
-        public RentalController(CarRentalDbContext context)
+        public RentalsController(CarRentalDbContext context)
         {
             _context = context;
         }

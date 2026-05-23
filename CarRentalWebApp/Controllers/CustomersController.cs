@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalWebApp.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         private readonly CarRentalDbContext _context;
-        public CustomerController(CarRentalDbContext context)
+        public CustomersController(CarRentalDbContext context)
         {
             _context = context;
         }

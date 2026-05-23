@@ -73,6 +73,7 @@ namespace CarRentalWebApp.Controllers
                     customer = new Customer
                     {
                         Name = model.CustomerName,
+                        LastName = model.CustomerSurname,
                         PhoneNumber = model.PhoneNumber,
                         Email = model.Email,
                         RegistrationDate = DateTime.Now

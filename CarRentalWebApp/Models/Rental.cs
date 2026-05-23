@@ -14,7 +14,7 @@ namespace CarRentalWebApp.Models
         [Required(ErrorMessage = "Bitiş tarihi zorunludur.")]
         public DateTime EndDate { get; set; }
         public bool IsCompleted { get; set; } = false;
-        
+
         // Navigation prop.
         public Customer Customer { get; set; }
         public Car Car { get; set; }
