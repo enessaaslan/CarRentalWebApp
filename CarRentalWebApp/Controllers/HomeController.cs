@@ -2,7 +2,6 @@ using CarRentalWebApp.Data;
 using CarRentalWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
 
 namespace CarRentalWebApp.Controllers
 {

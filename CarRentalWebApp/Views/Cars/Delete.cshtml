@@ -4,11 +4,11 @@
     ViewData["Title"] = "Araç Sil";
 }
 
-<h1>Araç Sil</h1>
+<h1 class="hero-title mb-4">Araç Sil</h1>
 
 <h3>Bu aracı silmek istediğinize emin misiniz?</h3>
 <div>
-    <hr />
+    <hr style="border-color: var(--glass-border);" />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Brand)
@@ -45,6 +45,7 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <button type="submit" class="btn btn-danger">Sil</button> |
-        <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+        <a asp-action="Index" class="btn btn-outline-light ms-2">Listeye Dön</a>
     </form>
 </div>
+

@@ -4,8 +4,8 @@
     ViewData["Title"] = "Müşteri Ekle";
 }
 
-<h1>Yeni Müşteri Ekle</h1>
-<hr />
+<h1 class="hero-title mb-4">Yeni Müşteri Ekle</h1>
+<hr style="border-color: var(--glass-border);" />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -36,8 +36,8 @@
             </div>
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Kaydet</button>
-                <a asp-action="Index" class="btn btn-secondary">Listeye Dön</a>
+                <button type="submit" class="btn btn-premium">Kaydet</button>
+                <a asp-action="Index" class="btn btn-outline-light ms-2">Listeye Dön</a>
             </div>
         </form>
     </div>
@@ -48,3 +48,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
