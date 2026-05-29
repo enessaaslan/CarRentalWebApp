@@ -37,12 +37,12 @@ namespace CarRentalWebApp.Controllers
                 Value = c.Id.ToString(),
                 Text = $"{c.Brand} {c.Model} ({c.PlateNumber})"
             }).ToList();
-            return View(new Rental());
+            return View(new RentalModel());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Rental rental)
+        public async Task<IActionResult> Create(RentalModel rental)
         {
             if (rental.StartDate >= rental.EndDate)
             {

@@ -69,7 +69,7 @@ namespace CarRentalWebApp.Controllers
 
                 if (customer == null)
                 {
-                    customer = new Customer
+                    customer = new CustomerModel
                     {
                         Name = model.CustomerName,
                         LastName = model.CustomerSurname,
@@ -81,7 +81,7 @@ namespace CarRentalWebApp.Controllers
                     await _context.SaveChangesAsync();
                 }
 
-                var rental = new Rental
+                var rental = new RentalModel
                 {
                     CustomerId = customer.Id,
                     CarId = model.CarId,

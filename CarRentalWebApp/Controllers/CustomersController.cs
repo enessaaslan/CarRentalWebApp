@@ -26,7 +26,7 @@ namespace CarRentalWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Customer customer)
+        public async Task<IActionResult> Create(CustomerModel customer)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace CarRentalWebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int Id, Customer customer)
+        public async Task<IActionResult> Edit(int Id, CustomerModel customer)
         {
             if (Id != customer.Id)
             {

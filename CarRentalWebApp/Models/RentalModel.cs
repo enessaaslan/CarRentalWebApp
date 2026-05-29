@@ -2,7 +2,7 @@
 
 namespace CarRentalWebApp.Models
 {
-    public class Rental
+    public class RentalModel
     {
         public int Id { get; set; }
         [Required]
@@ -16,7 +16,7 @@ namespace CarRentalWebApp.Models
         public bool IsCompleted { get; set; } = false;
 
         // Navigation prop.
-        public Customer Customer { get; set; }
-        public Car Car { get; set; }
+        public CustomerModel Customer { get; set; }
+        public CarModel Car { get; set; }
     }
 }

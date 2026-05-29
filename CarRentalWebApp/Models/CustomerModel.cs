@@ -2,7 +2,7 @@
 
 namespace CarRentalWebApp.Models
 {
-    public class Customer
+    public class CustomerModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Ad boş bırakılamaz.")]
@@ -20,6 +20,6 @@ namespace CarRentalWebApp.Models
         public DateTime RegistrationDate { get; set; }
 
         // Navigation prop.
-        public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+        public ICollection<RentalModel> Rentals { get; set; } = new List<RentalModel>();
     }
 }

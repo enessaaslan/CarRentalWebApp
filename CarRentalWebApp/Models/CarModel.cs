@@ -2,7 +2,7 @@
 
 namespace CarRentalWebApp.Models
 {
-    public class Car
+    public class CarModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Marka boş bırakılamaz.")]
@@ -23,6 +23,6 @@ namespace CarRentalWebApp.Models
 
         // Navigation prop.
 
-        public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
+        public ICollection<RentalModel> Rentals { get; set; } = new List<RentalModel>();
     }
 }
