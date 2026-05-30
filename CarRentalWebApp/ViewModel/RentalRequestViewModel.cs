@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CarRentalWebApp.Models
+namespace CarRentalWebApp.ViewModel
 {
     public class RentalRequestViewModel
     {

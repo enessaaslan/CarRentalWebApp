@@ -1,5 +1,6 @@
 using CarRentalWebApp.Data;
 using CarRentalWebApp.Models;
+using CarRentalWebApp.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

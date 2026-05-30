@@ -38,6 +38,28 @@
                             <a class="nav-link" asp-area="" asp-controller="Rentals" asp-action="Index">Kiralamalar</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item d-flex align-items-center me-3">
+                                <span class="text-light" style="font-size: 0.9rem;">Hoş geldin, <span style="color: var(--color-accent-gold);">@User.Identity.Name</span>!</span>
+                            </li>
+                            <li class="nav-item">
+                                <form asp-area="" asp-controller="Account" asp-action="Logout" method="get" class="d-inline">
+                                    <button type="submit" class="btn btn-sm mt-1" style="background: rgba(220, 53, 69, 0.1); color: #ff6b6b; border: 1px solid rgba(220, 53, 69, 0.3);">Çıkış Yap</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                            </li>
+                            <li class="nav-item ms-2">
+                                <a class="btn btn-premium btn-sm mt-1" asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

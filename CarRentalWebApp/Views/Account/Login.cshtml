@@ -1,0 +1,48 @@
+@model CarRentalWebApp.Viewmodel.LoginViewModel
+
+@{
+    ViewData["Title"] = "Giriş Yap";
+}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+        <div class="glass-card p-5">
+            <h1 class="hero-title text-center mb-4" style="font-size: 2rem;">Hoş Geldiniz</h1>
+            <hr style="border-color: var(--glass-border);" />
+            
+            <form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" placeholder="ornek@email.com" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-4">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-4 form-check">
+                    <input asp-for="RememberMe" class="form-check-input" />
+                    <label asp-for="RememberMe" class="form-check-label" style="color: var(--color-text-muted);"></label>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-premium btn-lg">Giriş Yap</button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-4">
+                <span style="color: var(--color-text-muted);">Hesabınız yok mu?</span> 
+                <a asp-action="Register" class="text-decoration-none fw-bold" style="color: var(--color-accent-gold);">Hemen Kayıt Ol</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,9 +1,10 @@
-﻿using CarRentalWebApp.Models;
+using CarRentalWebApp.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalWebApp.Data
 {
-    public class CarRentalDbContext : DbContext
+    public class CarRentalDbContext : IdentityDbContext<ApplicationUser>
     {
         public CarRentalDbContext(DbContextOptions<CarRentalDbContext> options) : base(options)
         {
