@@ -88,15 +88,14 @@ namespace CarRentalWebApp.Controllers
                     CarId = model.CarId,
                     StartDate = model.StartDate,
                     EndDate = model.EndDate,
-                    IsCompleted = false
+                    IsCompleted = false,
+                    IsApproved = false
                 };
 
                 _context.Rentals.Add(rental);
-                car.IsAvailable = false;
-
                 await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = "Kiralama başarı ile oluşturuldu.";
+                TempData["SuccessMessage"] = "Kiralama Talebi Oluşturuldu.";
                 return RedirectToAction(nameof(Index));
             }
 

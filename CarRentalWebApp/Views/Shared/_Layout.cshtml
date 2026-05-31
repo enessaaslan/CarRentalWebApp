@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="~/CarRentalWebApp.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <!-- Animated Background -->
     <div class="animated-bg-wrapper"></div>
 
     <header>
@@ -24,20 +23,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                     <ul class="navbar-nav flex-grow-1 ms-4">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Index">Araçlar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Customers" asp-action="Index">Müşteriler</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Rentals" asp-action="Index">Kiralamalar</a>
-                        </li>
+
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Cars" asp-action="Index">Araçlar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Customers" asp-action="Index">Müşteriler</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="" asp-controller="Rentals" asp-action="Index">Kiralamalar</a>
+                            </li>
+                        }
                     </ul>
+
                     <ul class="navbar-nav">
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -64,6 +69,7 @@
             </div>
         </nav>
     </header>
+
     <div class="container position-relative z-1 pt-3">
         <main role="main" class="pb-5">
             @RenderBody()
@@ -75,6 +81,7 @@
             &copy; 2026 - Premium Car Rental - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

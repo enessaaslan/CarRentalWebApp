@@ -1,11 +1,13 @@
 using CarRentalWebApp.Data;
 using CarRentalWebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace CarRentalWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class RentalsController : Controller
     {
         private readonly CarRentalDbContext _context;
@@ -22,60 +24,6 @@ namespace CarRentalWebApp.Controllers
                 .Include(r => r.Car)
                 .OrderByDescending(r => r.StartDate)
                 .ToListAsync();
-            return View(rental);
-        }
-
-        public async Task<IActionResult> Create()
-        {
-            var availableCars = await _context.Cars
-                .Where(c => c.IsAvailable)
-                .Select(c => new { c.Id, c.Brand, c.Model, c.PlateNumber })
-                .ToListAsync();
-
-            ViewData["AvailableCars"] = availableCars.Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = $"{c.Brand} {c.Model} ({c.PlateNumber})"
-            }).ToList();
-            return View(new RentalModel());
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(RentalModel rental)
-        {
-            if (rental.StartDate >= rental.EndDate)
-            {
-                ModelState.AddModelError("EndDate", "Bitiş Tarihi başlangıç tarihinden önce olamaz.");
-            }
-
-            if (ModelState.IsValid)
-            {
-                var car = await _context.Cars.FindAsync(rental.CarId);
-                if (car == null || !car.IsAvailable)
-                {
-                    ModelState.AddModelError("CarId", "Seçilen araba şuan müsait değil.");
-                }
-                else
-                {
-                    rental.IsCompleted = false;
-                    _context.Add(rental);
-                    car.IsAvailable = false;
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
-                }
-            }
-
-            var availableCars = await _context.Cars
-                .Where(c => c.IsAvailable)
-                .Select(c => new { c.Id, c.Brand, c.Model, c.PlateNumber })
-                .ToListAsync();
-
-            ViewData["AvailableCars"] = availableCars.Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = $"{c.Brand} {c.Model} ({c.PlateNumber})"
-            }).ToList();
             return View(rental);
         }
 
@@ -119,6 +67,29 @@ namespace CarRentalWebApp.Controllers
             
             return RedirectToAction(nameof(Index));
 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public async Task<IActionResult> Approve(int id)
+        {
+            var rental = await _context.Rentals
+                .Include(r => r.Car)
+                .FirstOrDefaultAsync(r => r.Id == id);
+            if (rental == null || rental.IsApproved)
+            {
+                return NotFound();
+            }
+            rental.IsApproved = true;
+
+            if (rental.Car != null)
+            {
+                rental.Car.IsAvailable = false;
+            }
+            await _context.SaveChangesAsync();
+            TempData["SuccessMessage"] = "Kiralama başarıyla onaylandı.";
+            return RedirectToAction(nameof(Index));
         }
     }
 }

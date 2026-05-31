@@ -18,6 +18,7 @@ namespace CarRentalWebApp.Models
         [Display(Name = "Bitiş Tarihi")]
         public DateTime EndDate { get; set; }
         public bool IsCompleted { get; set; } = false;
+        public bool IsApproved { get; set; } = false;
 
         // Navigation prop.
         public CustomerModel Customer { get; set; }

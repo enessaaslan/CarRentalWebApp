@@ -1,11 +1,13 @@
 ﻿using CarRentalWebApp.Models;
 using CarRentalWebApp.Viewmodel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace CarRentalWebApp.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AccountController : Controller
     {
         //DI
@@ -19,12 +21,14 @@ namespace CarRentalWebApp.Controllers
         }
 
         // REgister Tarafı.
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -48,12 +52,14 @@ namespace CarRentalWebApp.Controllers
         }
 
         // Login Tarafı.
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -73,11 +79,17 @@ namespace CarRentalWebApp.Controllers
             return View(model);
         }
 
-
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
